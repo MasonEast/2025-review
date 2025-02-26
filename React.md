@@ -1,5 +1,33 @@
 # React
 
+## Recoil 和 Redux，MobX 的区别
+
+### 1. Recoil
+
+- 更强调原子性和灵活性。它将状态拆分成多个原子（atoms），每个原子代表一个独立的状态单元。组件可以独立地订阅和修改这些原子状态，并且可以通过选择器（selectors）来派生和组合状态。这种设计使得状态管理更加细粒度，易于扩展和复用。
+- API 更加简洁和直观。主要使用 atom 来定义状态原子，使用 selector 来定义派生状态。组件可以直接使用 useRecoilState、useRecoilValue 等钩子来访问和修改状态。
+- 内置了一些性能优化机制，例如自动记忆化选择器，只有当依赖的状态发生变化时才会重新计算选择器的值。
+
+### 2. Redux
+
+- 采用单向数据流和单一数据源的设计理念。整个应用的状态被存储在一个单一的 store 中，并且这个状态是只读的。唯一改变状态的方式是触发 action，reducer 会根据 action 来纯函数式地计算新的状态。这种设计使得应用的状态变化可预测，便于调试和维护。
+- API 相对复杂，需要定义 action、reducer、store 等多个概念。通常的使用流程是：定义 action 类型和 action 创建函数，编写 reducer 函数来处理不同的 action，然后使用 createStore 函数创建 store。组件需要通过 connect 高阶组件或者 useSelector、useDispatch 等钩子来连接到 store 并获取状态和分发 action。
+- 性能优化通常需要手动进行，例如使用 reselect 库来创建记忆化的选择器，避免不必要的重新计算。
+
+### 3. MobX
+
+- MobX 是一个用于管理应用状态的库，它遵循响应式编程模式。
+- MobX 的核心概念是 observable，它是一个可观察的状态单元。通过 observable，我们可以将状态与组件关联起来，并在组件中读取和更新状态。
+- MobX 的另一个核心概念是 action，它是一个描述状态变化的普通对象。通过 action，我们可以将状态的变化与组件解耦，使得状态的变化更加可预测和可追踪。
+- MobX 的优点是简单易用，它遵循响应式编程模式，使得状态的变化更加可预测和可追踪。同时，MobX 的性能也非常优秀，它使用了代理（Proxy）和观察者（Observer）模式，可以避免不必要的重新渲染。
+- MobX 的缺点是相对于 Redux 来说，它的功能相对较少，不支持中间件、异步操作等高级功能。同时，MobX 的学习曲线相对较陡，需要一定的学习成本。
+
+### 4. Recoil vs Redux vs MobX
+
+- Recoil、Redux 和 MobX 都是用于管理应用状态的库，它们都遵循 Flux 架构模式。
+- Recoil、Redux 和 MobX 的核心概念都是 store、action 和 observable。
+- Recoil、Redux 和 MobX 的优点和缺点各不相同，需要根据具体的应用场景和需求来选择合适的库。
+
 ## scheduler 调度机制原理
 
 ### 1. 为什么需要调度器
