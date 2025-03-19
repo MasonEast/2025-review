@@ -87,3 +87,12 @@ git rebase -i HEAD~n # 交互式变基
 git rebase -i HEAD~n commit_id # 交互式变基
 git rebase -i HEAD~n commit_id^ # 交互式变基
 ```
+
+#### 如何移除一个指定的 commit
+
+```bash
+git rebase -i HEAD~n commit_id^
+# 找到要删除的 commit，将其前面的 pick 改为 drop
+# 保存并退出
+# git 会自动执行变基操作，删除指定的 commit
+```
